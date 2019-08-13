@@ -1,27 +1,43 @@
 import React from 'react';
+import Moment from 'react-moment';
 import './Card.css';
 
-const Card = () => (
+const Card = ({
+  eventName,
+  updated,
+  name,
+  tzLabel,
+  isAdmin,
+  avatarImage,
+}) => (
   <section className="card">
     <div className="card-header">
-      <span>team join</span>
-      <span>03 may 2017</span>
+      <span>{ eventName }</span>
+      <span>
+        <Moment format="MM/DD/YYYY">
+          {updated} 
+        </Moment>
+      </span>
     </div>
 
-    <div className="card-content primary">
+    <div
+      className={`card-content ${eventName === 'user_change' ? 'secondary' : 'primary'}`}
+    >
       <div className="user">
-        <img src="https://secure.gravatar.com/avatar/56779145d46784a68f71cbcce7899313.jpg?s=72&d=https%3A%2F%2Fa.slack-edge.com%2F136bc%2Fimg%2Favatars%2Fuser_shapes%2Fava_0002-72.png" />
+        <img src={avatarImage} alt="avatar" />
         <div className="user-data">
           <div className="name">
-            John Doe
+            { name }
           </div>
 
           <div className="from">
-            EUA - NY
+            { tzLabel }
           </div>
         </div>
       </div>
-      <span class="ext-info">not admin</span>
+      <span className="ext-info">
+        {isAdmin ? 'admin' : 'not admin'} 
+      </span>
     </div>
   </section>
 );

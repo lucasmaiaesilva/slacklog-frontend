@@ -1,20 +1,45 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Card from './Card';
 import './App.css';
+
+function Logs({ eventName, data }) {
+  return (
+    <Fragment>
+      <h2>{ eventName }</h2>
+      {data.map(log => (
+        <Card
+          key={log._id}
+          eventName={log.event.type}
+          updated={log.event.user.updated}
+          name={log.event.user.real_name}
+          tzLabel={log.event.user.tz_label}
+          isAdmin={log.event.user.is_admin}
+          avatarImage={log.event.user.profile.image_72}
+        />
+      ))}
+    </Fragment>
+  ); 
+}
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <h1>Logs List</h1>
-        <Card />
-        <Card />
       </header>
+      <Logs
+        eventName="user change"
+        data={logs[0].data}
+      />
+      <Logs
+        eventName="team join"
+        data={logs[1].data}
+      />
     </div>
   );
 }
 
-const data = [
+const logs = [
   {
     "event":"user_change",
     "data":[

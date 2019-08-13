@@ -1,4 +1,8 @@
-.App {}
+.App {
+  max-width: 900px;
+  margin: 0 auto;
+  padding-bottom: 40px;
+}
 
 .App-header h1 {
   color: #444;
@@ -8,3 +12,8 @@
   text-align: center;
 }
 
+.App h2 {
+  font-size: 18px;
+  margin-left: 14px;
+  font-weight: 400;
+}
